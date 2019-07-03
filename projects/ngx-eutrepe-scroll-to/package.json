@@ -1,0 +1,26 @@
+{
+  "name": "ngx-eutrepe-scroll-to",
+  "version": "8.0.0",
+  "description": "Directive and Servece for Angular to scroll to section",
+  "author": "Maciej Bobrowski",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eutrepe/ngx-eutrepe-scroll-to.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Eutrepe/ngx-eutrepe-scroll-to/issues"
+  },
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "directive",
+    "service",
+    "scroll-to-section"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  }
+}
