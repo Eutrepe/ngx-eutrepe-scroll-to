@@ -104,9 +104,6 @@ export class NgxEutrepeScrollToService {
         return;
       }
 
-      if(!this.isMoved) {
-        console.log('qqq')
-      }
       this.isMoved = true;
 
       this.raf = this.window.requestAnimationFrame(

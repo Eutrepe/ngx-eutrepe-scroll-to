@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from 'projects/ngx-eutrepe-scroll-to/src/public-api';
+import { WINDOW } from 'ngx-eutrepe-scroll-to';
 
 @NgModule({
   declarations: [

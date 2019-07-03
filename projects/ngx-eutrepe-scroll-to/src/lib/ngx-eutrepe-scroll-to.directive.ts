@@ -10,10 +10,10 @@ import { NgxEutrepeScrollToService } from './ngx-eutrepe-scroll-to.service';
 export class NgxEutrepeScrollToDirective {
   @Input('ngxEutrepScrollTo') eutrepeScrollToTarget: string | number = 100;
   @Input() eutrepeScrollToEasing: string = 'easeInOutQuad';
-  @Input() eutrepeScrollToDuration: number = 3500;
+  @Input() eutrepeScrollToDuration: number = 1000;
   @Input() eutrepeScrollToOffset: number   = 0;
-  @Input() eutrepeOnStartScrolling: Function = () => {console.log('START')};
-  @Input() eutrepeOnEndScrolling: Function = () => {console.log('END')};
+  @Input() eutrepeOnStartScrolling: Function = null;
+  @Input() eutrepeOnEndScrolling: Function = null;
 
 
   constructor(
