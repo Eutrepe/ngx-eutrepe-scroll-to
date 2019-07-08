@@ -6,13 +6,13 @@
 
 ## Installation
 
-`npm i --save @eutrepe/scroll-to-section@4.0.0`
+`npm i --save @eutrepe/scroll-to@4.0.0`
 
 # API
 
 #### Directive:
 
-`import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to-section'`
+`import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
 | Input                      | Type              | Required                           | Description                                                            |
 | -------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
@@ -27,7 +27,7 @@
 
 #### Service:
 
-`import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to-section'`
+`import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to'`
 
 ```typescript
 scrollTo(target: HTMLElement | number, config?: IScrollToConfig) : void
@@ -69,16 +69,16 @@ IScrollToConfig  {
 # Usage
 
 ### 1) Register the `NgxEutrepeScrollToDirective` in your app module.
- > `import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to-section'`
+ > `import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
   ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NgxEutrepeScrollToDirective, NgxEutrepeScrollToService } from '@eutrepe/scroll-to-section';
+import { NgxEutrepeScrollToDirective, NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from '@eutrepe/scroll-to-section';
+import { WINDOW } from '@eutrepe/scroll-to';
 
 @NgModule({
   declarations: [
@@ -151,7 +151,7 @@ export class AppModule { }
 
 ```typescript
     import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-    import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to-section';
+    import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
     @Component({
     selector: 'eutrepe-root',
