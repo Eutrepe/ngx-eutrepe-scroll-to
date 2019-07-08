@@ -1,4 +1,4 @@
-import { Injectable, Inject, HostListener } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { Easings } from './utility/easings';
 import { WINDOW } from './windowToken/window-token';

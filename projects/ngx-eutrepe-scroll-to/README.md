@@ -2,6 +2,7 @@
 
 * Directive and Servece for Angular to scroll to section
 * Based on: [pawelgrzybek.com](https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/)
+* For Angular 4 use version 4.x.x, GIT branch: angular-4
 
 ## Installation
 
@@ -69,7 +70,7 @@ IScrollToConfig  {
 
 # Usage
 
-## 1) Register the `NgxEutrepeScrollToDirective` in your app module.
+### 1) Register the `NgxEutrepeScrollToDirective` in your app module.
  > `import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to'`
 
   ```typescript
@@ -99,7 +100,7 @@ export class AppModule { }
 
  <br /><br />
 
-## 2) Use the directive `(ngxEutrepScrollTo)`
+### 2) Use the directive `(ngxEutrepScrollTo)`
 
 #### Basic
 
@@ -142,7 +143,7 @@ export class AppModule { }
 ```
 <br /><br />
 
-## 3) Use the service `(NgxEutrepeScrollToService)`
+### 3) Use the service `(NgxEutrepeScrollToService)`
 
 
 ```html
