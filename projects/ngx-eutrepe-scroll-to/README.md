@@ -2,7 +2,7 @@
 
 * Directive and Servece for Angular to scroll to section
 * Based on: [pawelgrzybek.com](https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/)
-* For Angular 4 use version 4.x.x, GIT branch: angular-4
+* For Angular 4 use version 4.x.x, GIT branch: angular-4 (Check README.md on this branch)
 
 ## Installation
 
