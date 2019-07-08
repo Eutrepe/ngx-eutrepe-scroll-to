@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { NgxEutrepeScrollToService } from 'ngx-eutrepe-scroll-to';
+import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
 @Component({
   selector: 'eutrepe-root',

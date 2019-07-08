@@ -2,19 +2,18 @@
 
 * Directive and Servece for Angular to scroll to section
 * Based on: [pawelgrzybek.com](https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/)
+* Angular 8 version
 * For Angular 4 use version 4.x.x, GIT branch: angular-4 (Check README.md on this branch)
 
 ## Installation
 
-`npm i --save ngx-eutrepe-scroll-to`
-
-<br />
+`npm i --save @eutrepe/scroll-to`
 
 # API
 
 #### Directive:
 
-`import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to'`
+`import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
 | Input                      | Type              | Required                           | Description                                                            |
 | -------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
@@ -29,7 +28,7 @@
 
 #### Service:
 
-`import { NgxEutrepeScrollToService } from 'ngx-eutrepe-scroll-to'`
+`import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to'`
 
 ```typescript
 scrollTo(target: HTMLElement | number, config?: IScrollToConfig) : void
@@ -71,16 +70,16 @@ IScrollToConfig  {
 # Usage
 
 ### 1) Register the `NgxEutrepeScrollToDirective` in your app module.
- > `import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to'`
+ > `import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
   ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to';
+import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from 'ngx-eutrepe-scroll-to'; // not required (this is also happening in the background of the plugin)
+import { WINDOW } from '@eutrepe/scroll-to'; // not required (this is also happening in the background of the plugin)
 
 @NgModule({
   declarations: [
@@ -152,7 +151,7 @@ export class AppModule { }
 
 ```typescript
     import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-    import { NgxEutrepeScrollToService } from 'ngx-eutrepe-scroll-to';
+    import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
     @Component({
     selector: 'eutrepe-root',

@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to';
+import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from 'ngx-eutrepe-scroll-to';
+import { WINDOW } from '@eutrepe/scroll-to';
 
 @NgModule({
   declarations: [
