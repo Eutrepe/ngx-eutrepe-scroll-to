@@ -10,7 +10,9 @@ export interface IScrollToConfig  {
   offset?: number,
   easing?: string,
   onEnd?: Function,
-  onStart?: Function
+  onStart?: Function,
+  onStartParams?: Array<any>
+  onEndParams?: Array<any>
 }
 
 /** @dynamic */
@@ -22,7 +24,9 @@ export class NgxEutrepeScrollToService {
     offset: 0,
     easing: 'easeInOutQuad',
     onEnd: null,
-    onStart: null
+    onStart: null,
+    onStartParams: [],
+    onEndParams: []
   }
 
   private settings: IScrollToConfig = null;
@@ -57,7 +61,7 @@ export class NgxEutrepeScrollToService {
     this.settings = {...this.defaultConfig, ...config};
 
     if (this.settings.onStart && typeof(this.settings.onStart) === 'function') {
-      this.settings.onStart();
+      this.settings.onStart(...this.settings.onStartParams);
     }
 
     this.clearRaf();
@@ -96,7 +100,7 @@ export class NgxEutrepeScrollToService {
 
       if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1) {
         if (this.isMoved && this.settings.onEnd && typeof(this.settings.onEnd) === 'function') {
-          this.settings.onEnd();
+          this.settings.onEnd(...this.settings.onEndParams);
         }
         this.isMoved = false;
         return;

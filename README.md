@@ -6,7 +6,7 @@
 
 ## Installation
 
-`npm i --save @eutrepe/scroll-to@4.0.0`
+`npm i --save @eutrepe/scroll-to@4.0.1`
 
 # API
 
@@ -14,14 +14,16 @@
 
 `import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
-| Input                      | Type              | Required                           | Description                                                            |
-| -------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
-| [ngxEutrepScrollTo]        | string or number  | **YES**                            | Target selector name or number pixels to scroll                        |
-| [eutrepeScrollToEasing]    | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                              |
-| [eutrepeScrollToDuration]  | number            | Optional, default: 1000            | Easing time in milliseconds                                            |
-| [eutrepeScrollToOffset]    | number            | Optional, default: 0               | Offset in px to target element                                         |
-| [eutrepeOnStartScrolling]  | Function          | Optional, default: null            | The function is started immediately after the start of scrolling       |
-| [eutrepeOnEndScrolling]    | Function          | Optional, default: null            | The function is started immediately after the end of scrolling         |
+| Input                            | Type              | Required                           | Description                                                            |
+| -------------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
+| [ngxEutrepScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                        |
+| [eutrepeScrollToEasing]          | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                              |
+| [eutrepeScrollToDuration]        | number            | Optional, default: 1000            | Easing time in milliseconds                                            |
+| [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                         |
+| [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling       |
+| [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling         |
+| [eutrepeOnStartScrollingParams]  | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
+| [eutrepeOnEndScrollingParams]    | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
 
 <br />
 
@@ -39,7 +41,9 @@ IScrollToConfig  {
   offset?: number,
   easing?: string,
   onEnd?: Function,
-  onStart?: Function
+  onStart?: Function,
+  onStartParams?: Array<any>
+  onEndParams?: Array<any>
 }
 ```
 
@@ -125,6 +129,8 @@ export class AppModule { }
     [eutrepeScrollToOffset]="100"
     [eutrepeOnStartScrolling]="onStart"
     [eutrepeOnEndScrolling]="onEnd"
+    [eutrepeOnStartScrollingParams]="['some_text', 1, true]"
+    [eutrepeOnEndScrollingParams]="[100, false]"
 >Scroll To</button>
 
 
@@ -132,11 +138,16 @@ export class AppModule { }
 ```
 
 ```typescript
-  onStart() {
+  onStart(arg1, arg2, arg3) {
+    console.log(arg1); // 'some_text'
+    console.log(arg2); // 1
+    console.log(arg3); // true
     console.log('start scrolling');
   }
 
-  onEnd() {
+  onEnd(arg1, arg2) {
+    console.log(arg1); // 100
+    console.log(arg2); // false
     console.log('finish scrolling');
   }
 ```
@@ -170,18 +181,25 @@ export class AppModule { }
         duration: 3000,
         offset: 100,
         onStart: this.onStart,
-        onEnd: this.onEnd
+        onEnd: this.onEnd,
+        onStartParams: ['some_text', 1, true],
+        onEndParams: [100, false]
         });
     }
 
 
-    onStart() {
-        console.log('start scrolling');
+    onStart(arg1, arg2, arg3) {
+      console.log(arg1); // 'some_text'
+      console.log(arg2); // 1
+      console.log(arg3); // true
+      console.log('start scrolling');
     }
 
-    onEnd() {
-        console.log('finish scrolling');
+    onEnd(arg1, arg2) {
+      console.log(arg1); // 100
+      console.log(arg2); // false
+      console.log('finish scrolling');
     }
-    }
+  }
 
 ```

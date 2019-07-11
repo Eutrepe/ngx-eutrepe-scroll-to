@@ -27,7 +27,8 @@ export class AppComponent implements AfterViewInit {
     console.log('start scrolling');
   }
 
-  onEnd() {
+  onEnd(v) {
+    console.log(v)
     console.log('finish scrolling');
   }
 }

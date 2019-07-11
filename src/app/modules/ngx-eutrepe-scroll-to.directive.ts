@@ -13,7 +13,9 @@ export class NgxEutrepeScrollToDirective {
   @Input() eutrepeScrollToDuration: number = 1000;
   @Input() eutrepeScrollToOffset: number   = 0;
   @Input() eutrepeOnStartScrolling: Function = null;
+  @Input() eutrepeOnStartScrollingParams: Array<any> = null;
   @Input() eutrepeOnEndScrolling: Function = null;
+  @Input() eutrepeOnEndScrollingParams: Array<any> = null;
 
 
   constructor(
@@ -41,7 +43,9 @@ export class NgxEutrepeScrollToDirective {
           offset: this.eutrepeScrollToOffset,
           easing: this.eutrepeScrollToEasing,
           onStart: this.eutrepeOnStartScrolling,
-          onEnd: this.eutrepeOnEndScrolling
+          onEnd: this.eutrepeOnEndScrolling,
+          onStartParams: this.eutrepeOnStartScrollingParams,
+          onEndParams: this.eutrepeOnEndScrollingParams
         }
       );
   }
