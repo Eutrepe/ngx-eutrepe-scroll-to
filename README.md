@@ -2,33 +2,35 @@
 
 * Directive and Servece for Angular to scroll to section
 * Based on: [pawelgrzybek.com](https://pawelgrzybek.com/page-scroll-in-vanilla-javascript/)
+* Angular 8 version
+* For Angular 4 use version 4.x.x, GIT branch: angular-4 (Check README.md on this branch)
 
 ## Installation
 
-`npm i --save ngx-eutrepe-scroll-to`
-
-<br />
+`npm i --save @eutrepe/scroll-to`
 
 # API
 
 #### Directive:
 
-`import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to'`
+`import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
-| Input                      | Type              | Required                           | Description                                                            |
-| -------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
-| [ngxEutrepScrollTo]        | string or number  | **YES**                            | Target selector name or number pixels to scroll                        |
-| [eutrepeScrollToEasing]    | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                              |
-| [eutrepeScrollToDuration]  | number            | Optional, default: 1000            | Easing time in milliseconds                                            |
-| [eutrepeScrollToOffset]    | number            | Optional, default: 0               | Offset in px to target element                                         |
-| [eutrepeOnStartScrolling]  | Function          | Optional, default: null            | The function is started immediately after the start of scrolling       |
-| [eutrepeOnEndScrolling]    | Function          | Optional, default: null            | The function is started immediately after the end of scrolling         |
+| Input                            | Type              | Required                           | Description                                                            |
+| -------------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
+| [ngxEutrepScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                        |
+| [eutrepeScrollToEasing]          | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                              |
+| [eutrepeScrollToDuration]        | number            | Optional, default: 1000            | Easing time in milliseconds                                            |
+| [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                         |
+| [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling       |
+| [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling         |
+| [eutrepeOnStartScrollingParams]  | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
+| [eutrepeOnEndScrollingParams]    | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
 
 <br />
 
 #### Service:
 
-`import { NgxEutrepeScrollToService } from 'ngx-eutrepe-scroll-to'`
+`import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to'`
 
 ```typescript
 scrollTo(target: HTMLElement | number, config?: IScrollToConfig) : void
@@ -40,7 +42,9 @@ IScrollToConfig  {
   offset?: number,
   easing?: string,
   onEnd?: Function,
-  onStart?: Function
+  onStart?: Function,
+  onStartParams?: Array<any>
+  onEndParams?: Array<any>
 }
 ```
 
@@ -69,17 +73,17 @@ IScrollToConfig  {
 
 # Usage
 
-## 1) Register the `NgxEutrepeScrollToDirective` in your app module.
- > `import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to'`
+### 1) Register the `NgxEutrepeScrollToDirective` in your app module.
+ > `import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to'`
 
   ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NgxEutrepeScrollToDirective } from 'ngx-eutrepe-scroll-to';
+import { NgxEutrepeScrollToDirective } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from 'ngx-eutrepe-scroll-to'; // not required (this is also happening in the background of the plugin)
+import { WINDOW } from '@eutrepe/scroll-to'; // not required (this is also happening in the background of the plugin)
 
 @NgModule({
   declarations: [
@@ -99,7 +103,7 @@ export class AppModule { }
 
  <br /><br />
 
-## 2) Use the directive `(ngxEutrepScrollTo)`
+### 2) Use the directive `(ngxEutrepScrollTo)`
 
 #### Basic
 
@@ -125,6 +129,8 @@ export class AppModule { }
     [eutrepeScrollToOffset]="100"
     [eutrepeOnStartScrolling]="onStart"
     [eutrepeOnEndScrolling]="onEnd"
+    [eutrepeOnStartScrollingParams]="['some_text', 1, true]"
+    [eutrepeOnEndScrollingParams]="[100, false]"
 >Scroll To</button>
 
 
@@ -132,17 +138,22 @@ export class AppModule { }
 ```
 
 ```typescript
-  onStart() {
+  onStart(arg1, arg2, arg3) {
+    console.log(arg1); // 'some_text'
+    console.log(arg2); // 1
+    console.log(arg3); // true
     console.log('start scrolling');
   }
 
-  onEnd() {
+  onEnd(arg1, arg2) {
+    console.log(arg1); // 100
+    console.log(arg2); // false
     console.log('finish scrolling');
   }
 ```
 <br /><br />
 
-## 3) Use the service `(NgxEutrepeScrollToService)`
+### 3) Use the service `(NgxEutrepeScrollToService)`
 
 
 ```html
@@ -151,7 +162,7 @@ export class AppModule { }
 
 ```typescript
     import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-    import { NgxEutrepeScrollToService } from 'ngx-eutrepe-scroll-to';
+    import { NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
     @Component({
     selector: 'eutrepe-root',
@@ -170,18 +181,24 @@ export class AppModule { }
         duration: 3000,
         offset: 100,
         onStart: this.onStart,
-        onEnd: this.onEnd
+        onEnd: this.onEnd,
+        onStartParams: ['some_text', 1, true],
+        onEndParams: [100, false]
         });
     }
 
 
-    onStart() {
-        console.log('start scrolling');
+    onStart(arg1, arg2, arg3) {
+      console.log(arg1); // 'some_text'
+      console.log(arg2); // 1
+      console.log(arg3); // true
+      console.log('start scrolling');
     }
 
-    onEnd() {
-        console.log('finish scrolling');
+    onEnd(arg1, arg2) {
+      console.log(arg1); // 100
+      console.log(arg2); // false
+      console.log('finish scrolling');
     }
-    }
-
+  }
 ```
