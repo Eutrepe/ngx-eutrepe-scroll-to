@@ -1,3 +1,9 @@
+## ngxEutrepeScrollTo - v8.0.2 (23/07/2019)
+
+### Improvment
+
+* Improvment documentation
+
 ## ngxEutrepeScrollTo - v8.0.1 (11/07/2019)
 
 ### Improvements:
