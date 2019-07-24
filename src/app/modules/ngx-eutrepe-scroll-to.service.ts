@@ -11,10 +11,10 @@ export interface IScrollToConfig  {
   easing?: string;
   onEnd?: Function;
   onStart?: Function;
-  onStartParams?: Array<any>;
-  onEndParams?: Array<any>;
+  onStartParams?: Array<any> | undefined;
+  onEndParams?: Array<any> | undefined;
   onBreak?: Function;
-  onBreakParams?: Array<any>;
+  onBreakParams?: Array<any> | undefined;
 }
 
 /** @dynamic */
@@ -53,7 +53,8 @@ export class NgxEutrepeScrollToService {
   private clearRaf = () => {
 
     if (this.settings.onBreak && typeof(this.settings.onBreak) === 'function') {
-      this.settings.onBreak(...this.settings.onBreakParams);
+      const arg = this.settings.onBreakParams ? this.settings.onBreakParams : [];
+      this.settings.onBreak(...arg);
     }
 
     this.window.cancelAnimationFrame(this.raf);
@@ -70,7 +71,8 @@ export class NgxEutrepeScrollToService {
     this.settings = {...this.defaultConfig, ...config};
 
     if (this.settings.onStart && typeof(this.settings.onStart) === 'function') {
-      this.settings.onStart(...this.settings.onStartParams);
+      const arg = this.settings.onStartParams ? this.settings.onStartParams : [];
+      this.settings.onStart(...arg);
     }
 
     if (this.isMoved) {
@@ -112,7 +114,8 @@ export class NgxEutrepeScrollToService {
 
       if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1) {
         if (this.isMoved && this.settings.onEnd && typeof(this.settings.onEnd) === 'function') {
-          this.settings.onEnd(...this.settings.onEndParams);
+          const arg = this.settings.onEndParams ? this.settings.onEndParams : [];
+          this.settings.onEnd(...arg);
         }
         this.isMoved = false;
         return;

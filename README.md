@@ -170,10 +170,10 @@ export class AppModule { }
 | [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                            |
 | [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling          |
 | [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling            |
-| [eutrepeOnStartScrollingParams]  | Array             | Optional, default: []              | Array of custom argumments for onStart callback                           |
-| [eutrepeOnEndScrollingParams]    | Array             | Optional, default: []              | Array of custom argumments for onStart callback                           |
+| [eutrepeOnStartScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
+| [eutrepeOnEndScrollingParams]    | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
 | [eutrepeOnBreakScrolling]        | Function          | Optional, default: null            | The function is when user break scrolling (secound click, resize, scroll) |
-| [eutrepeOnBreakScrollingParams]  | Array             | Optional, default: []              | Array of custom argumments for onBreak callback                           |
+| [eutrepeOnBreakScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onBreak callback                           |
 
 <br />
 
@@ -192,10 +192,10 @@ export interface IScrollToConfig  {
   easing?: string;
   onEnd?: Function;
   onStart?: Function;
-  onStartParams?: Array<any>;
-  onEndParams?: Array<any>;
+  onStartParams?: Array<any> | undefined;
+  onEndParams?: Array<any> | undefined;
   onBreak?: Function;
-  onBreakParams?: Array<any>;
+  onBreakParams?: Array<any> | undefined;
 }
 ```
 

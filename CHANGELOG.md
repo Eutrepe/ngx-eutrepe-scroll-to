@@ -1,3 +1,11 @@
+## ngxEutrepeScrollTo - v4.1.1 (24/07/2019)
+
+### Fixed
+
+* Change `IScrollToConfig` interface
+
+
+
 ## ngxEutrepeScrollTo - v4.1.0 (24/07/2019)
 
 ### New Features:
