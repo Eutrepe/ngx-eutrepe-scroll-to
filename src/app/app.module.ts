@@ -4,7 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NgxEutrepeScrollToModule } from './modules/ngx-eutrepe-scroll-to.module';
 import { NgxEutrepeScrollToService } from './modules/ngx-eutrepe-scroll-to.service';
-import { WINDOW } from './modules/windowToken/window-token';
+import { WINDOW_SCROLL_TO } from './modules/windowToken/window-token';
 
 @NgModule({
     declarations: [
@@ -16,7 +16,7 @@ import { WINDOW } from './modules/windowToken/window-token';
         NgxEutrepeScrollToModule
     ],
     providers: [
-      {provide: WINDOW, useValue: window},
+      {provide: WINDOW_SCROLL_TO, useValue: window},
       NgxEutrepeScrollToService
     ],
     bootstrap: [ AppComponent ],

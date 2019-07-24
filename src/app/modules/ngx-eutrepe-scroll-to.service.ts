@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 
 import { Easings } from './utility/easings';
-import { WINDOW } from './windowToken/window-token';
+import { WINDOW_SCROLL_TO } from './windowToken/window-token';
 import { DOCUMENT } from '@angular/common';
 
 
@@ -38,7 +38,7 @@ export class NgxEutrepeScrollToService {
   private isMoved: boolean = false;
 
   constructor(
-      @Inject(WINDOW) private window: Window,
+      @Inject(WINDOW_SCROLL_TO) private window: Window,
       @Inject(DOCUMENT) private document: Document
     ) {
       if (!this.window) {

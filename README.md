@@ -21,7 +21,7 @@ import { NgModule } from '@angular/core';
 import { NgxEutrepeScrollToModule, NgxEutrepeScrollToService } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from '@eutrepe/scroll-to';
+import { WINDOW_SCROLL_TO } from '@eutrepe/scroll-to';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { WINDOW } from '@eutrepe/scroll-to';
     NgxEutrepeScrollToModule
   ],
   providers: [
-    {provide: WINDOW, useValue: window},
+    {provide: WINDOW_SCROLL_TO, useValue: window},
     NgxEutrepeScrollToService
   ],
   bootstrap: [AppComponent]
