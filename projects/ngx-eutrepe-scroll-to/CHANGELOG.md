@@ -1,3 +1,15 @@
+## ngxEutrepeScrollTo - v8.1.0 (24/07/2019)
+
+### New Features:
+
+* Add `onBreak` callback with params
+
+### Fixed
+
+* Rename WINDOW TOKEN name. WINDOW -> WINDOW_SCROLL_TO
+* Change `IScrollToConfig` interface
+
+
 ## ngxEutrepeScrollTo - v8.0.2 (23/07/2019)
 
 ### Improvment

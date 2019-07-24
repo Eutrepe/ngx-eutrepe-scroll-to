@@ -4,8 +4,7 @@ import { NgxEutrepeScrollToDirective } from './ngx-eutrepe-scroll-to.directive';
 
 @NgModule({
   declarations: [NgxEutrepeScrollToDirective],
-  imports: [
-  ],
+  imports: [ ],
   exports: [NgxEutrepeScrollToDirective]
 })
 export class NgxEutrepeScrollToModule { }

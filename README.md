@@ -22,7 +22,7 @@ import { NgModule } from '@angular/core';
 import { NgxEutrepeScrollToModule } from '@eutrepe/scroll-to';
 
 import { AppComponent } from './app.component';
-import { WINDOW } from '@eutrepe/scroll-to'; // not required (this is also happening in the background of the plugin)
+import { WINDOW_SCROLL_TO } from '@eutrepe/scroll-to'; // not required (this is also happening in the background of the plugin)
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { WINDOW } from '@eutrepe/scroll-to'; // not required (this is also happe
     NgxEutrepeScrollToModule
   ],
   providers: [
-    {provide: WINDOW, useValue: window} // not required (this is also happening in the background of the plugin)
+    {provide: WINDOW_SCROLL_TO, useValue: window} // not required (this is also happening in the background of the plugin)
   ],
   bootstrap: [AppComponent]
 })
@@ -70,8 +70,10 @@ export class AppModule { }
     [eutrepeOnEndScrolling]="onEnd"
     [eutrepeOnStartScrollingParams]="['some_text', 1, true]"
     [eutrepeOnEndScrollingParams]="[100, false]"
+    [eutrepeOnBreakScrolling]="onBreak.bind(this)"
+    [eutrepeOnBreakScrollingParams]="['Eutrepe']"
 >Scroll To</button>
-
+<!-- Use .bind(this) for callbacks if you want use scoped variables -->
 
 <div id="target"></div>
 ```
@@ -88,6 +90,10 @@ export class AppModule { }
     console.log(arg1); // 100
     console.log(arg2); // false
     console.log('finish scrolling');
+  }
+
+  onBreak(arg1) {
+    console.log(arg1);  // Eutrepe
   }
 ```
 <br /><br />
@@ -122,7 +128,9 @@ export class AppModule { }
         onStart: this.onStart,
         onEnd: this.onEnd,
         onStartParams: ['some_text', 1, true],
-        onEndParams: [100, false]
+        onEndParams: [100, false],
+        onBreakParams: ['Eutrepe'],
+        onBreak: this.onBreak
         });
     }
 
@@ -139,6 +147,10 @@ export class AppModule { }
       console.log(arg2); // false
       console.log('finish scrolling');
     }
+
+    onBreak(arg1) {
+      console.log(arg1);  // Eutrepe
+    }
   }
 ```
 
@@ -148,16 +160,18 @@ export class AppModule { }
 
 `import { NgxEutrepeScrollToModule } from '@eutrepe/scroll-to'`
 
-| Input                            | Type              | Required                           | Description                                                            |
-| -------------------------------- | ----------------- | ---------------------------------- | ---------------------------------------------------------------------- |
-| [ngxEutrepScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                        |
-| [eutrepeScrollToEasing]          | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                              |
-| [eutrepeScrollToDuration]        | number            | Optional, default: 1000            | Easing time in milliseconds                                            |
-| [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                         |
-| [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling       |
-| [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling         |
-| [eutrepeOnStartScrollingParams]  | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
-| [eutrepeOnEndScrollingParams]    | Array             | Optional, default: []              | Array of custom argumments for onStart callback                        |
+| Input                            | Type              | Required                           | Description                                                               |
+| -------------------------------- | ----------------- | ---------------------------------- | ------------------------------------------------------------------------- |
+| [ngxEutrepScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                           |
+| [eutrepeScrollToEasing]          | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                                 |
+| [eutrepeScrollToDuration]        | number            | Optional, default: 1000            | Easing time in milliseconds                                               |
+| [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                            |
+| [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling          |
+| [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling            |
+| [eutrepeOnStartScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
+| [eutrepeOnEndScrollingParams]    | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
+| [eutrepeOnBreakScrolling]        | Function          | Optional, default: null            | The function is when user break scrolling (secound click, resize, scroll) |
+| [eutrepeOnBreakScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onBreak callback                           |
 
 <br />
 
@@ -170,14 +184,16 @@ scrollTo(target: HTMLElement | number, config?: IScrollToConfig) : void
 ```
 
 ```typescript
-IScrollToConfig  {
-  duration?: number,
-  offset?: number,
-  easing?: string,
-  onEnd?: Function,
-  onStart?: Function,
-  onStartParams?: Array<any>
-  onEndParams?: Array<any>
+export interface IScrollToConfig {
+  duration?: number;
+  offset?: number;
+  easing?: string;
+  onEnd?: Function;
+  onStart?: Function;
+  onStartParams?: Array<any> | undefined;
+  onEndParams?: Array<any> | undefined;
+  onBreak?: Function;
+  onBreakParams?: Array<any> | undefined;
 }
 ```
 

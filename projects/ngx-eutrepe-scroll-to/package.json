@@ -1,6 +1,6 @@
 {
   "name": "@eutrepe/scroll-to",
-  "version": "8.0.2",
+  "version": "8.1.0",
   "description": "Directive and Servece for Angular to scroll to section",
   "author": "Maciej Bobrowski",
   "repository": {
@@ -16,7 +16,8 @@
     "typescript",
     "directive",
     "service",
-    "scroll-to-section"
+    "scroll-to-section",
+    "scroll to section"
   ],
   "license": "MIT",
   "peerDependencies": {

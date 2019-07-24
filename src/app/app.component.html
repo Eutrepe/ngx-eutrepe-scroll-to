@@ -6,9 +6,18 @@
 [eutrepeScrollToOffset]="100"
 [eutrepeOnStartScrolling]="onStart"
 [eutrepeOnEndScrolling]="onEnd"
+[eutrepeOnStartScrollingParams]="['some_text', 1, true]"
+[eutrepeOnEndScrollingParams]="[100, false]"
+[eutrepeOnBreakScrolling]="onBreak"
+[eutrepeOnBreakScrollingParams]="['Eutrepe']"
 >Scroll</button>
 
-<div id="zzz" style="text-align:center" [ngxEutrepScrollTo]="'#aaa'">
+<div id="zzz" style="text-align:center" [ngxEutrepScrollTo]="'#aaa'"
+[eutrepeOnStartScrolling]="onStart"
+[eutrepeOnEndScrolling]="onEnd"
+[eutrepeOnStartScrollingParams]="['33333', 1, true]"
+[eutrepeOnEndScrollingParams]="[100, false]"
+[eutrepeOnBreakScrolling]="onBreak">
   <h1>
     Welcome to {{ title }}!
   </h1>

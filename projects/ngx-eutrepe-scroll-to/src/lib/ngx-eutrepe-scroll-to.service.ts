@@ -1,18 +1,20 @@
 import { Injectable, Inject } from '@angular/core';
 
 import { Easings } from './utility/easings';
-import { WINDOW } from './windowToken/window-token';
+import { WINDOW_SCROLL_TO } from './windowToken/window-token';
 import { DOCUMENT } from '@angular/common';
 
 
 export interface IScrollToConfig  {
-  duration?: number,
-  offset?: number,
-  easing?: string,
-  onEnd?: Function,
-  onStart?: Function,
-  onStartParams?: Array<any>
-  onEndParams?: Array<any>
+  duration?: number;
+  offset?: number;
+  easing?: string;
+  onEnd?: Function;
+  onStart?: Function;
+  onStartParams?: Array<any> | undefined;
+  onEndParams?: Array<any> | undefined;
+  onBreak?: Function;
+  onBreakParams?: Array<any> | undefined;
 }
 
 /** @dynamic */
@@ -28,7 +30,9 @@ export class NgxEutrepeScrollToService {
     onEnd: null,
     onStart: null,
     onStartParams: [],
-    onEndParams: []
+    onEndParams: [],
+    onBreak: null,
+    onBreakParams: []
   }
 
   private settings: IScrollToConfig = null;
@@ -40,7 +44,7 @@ export class NgxEutrepeScrollToService {
   private isMoved: boolean = false;
 
   constructor(
-      @Inject(WINDOW) private window: Window,
+      @Inject(WINDOW_SCROLL_TO) private window: Window,
       @Inject(DOCUMENT) private document: Document
     ) {
       if (!this.window) {
@@ -49,6 +53,11 @@ export class NgxEutrepeScrollToService {
     }
 
   private clearRaf = () => {
+    if (this.settings.onBreak && typeof(this.settings.onBreak) === 'function') {
+      const arg = this.settings.onBreakParams ? this.settings.onBreakParams : [];
+      this.settings.onBreak(...arg);
+    }
+
     this.window.cancelAnimationFrame(this.raf);
     this.window.removeEventListener('resize', this.clearRaf, false);
     this.window.removeEventListener('mousewheel', this.clearRaf, false);
@@ -63,10 +72,14 @@ export class NgxEutrepeScrollToService {
     this.settings = {...this.defaultConfig, ...config};
 
     if (this.settings.onStart && typeof(this.settings.onStart) === 'function') {
-      this.settings.onStart(...this.settings.onStartParams);
+      const arg = this.settings.onStartParams ? this.settings.onStartParams : [];
+      this.settings.onStart(...arg);
     }
 
-    this.clearRaf();
+    if (this.isMoved) {
+      this.clearRaf();
+    }
+
     this.window.addEventListener('resize', this.clearRaf, false);
     this.window.addEventListener('mousewheel', this.clearRaf, false);
     this.window.addEventListener('DOMMouseScroll', this.clearRaf, false);
@@ -102,7 +115,8 @@ export class NgxEutrepeScrollToService {
 
       if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1) {
         if (this.isMoved && this.settings.onEnd && typeof(this.settings.onEnd) === 'function') {
-          this.settings.onEnd(...this.settings.onEndParams);
+          const arg = this.settings.onEndParams ? this.settings.onEndParams : [];
+          this.settings.onEnd(...arg);
         }
         this.isMoved = false;
         return;
