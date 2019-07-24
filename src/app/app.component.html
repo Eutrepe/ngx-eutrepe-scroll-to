@@ -8,13 +8,16 @@
 [eutrepeOnEndScrolling]="onEnd"
 [eutrepeOnEndScrollingParams]="['some_text', 1, true]"
 [eutrepeOnEndScrollingParams]="[100, false]"
+[eutrepeOnBreakScrolling]="onBreak"
+[eutrepeOnBreakScrollingParams]="[100, false]"
 >Scroll</button>
 
 <div id="zzz" style="text-align:center" [ngxEutrepScrollTo]="'#aaa'"
 [eutrepeOnStartScrolling]="onStart"
 [eutrepeOnEndScrolling]="onEnd"
 [eutrepeOnEndScrollingParams]="['33333', 1, true]"
-[eutrepeOnEndScrollingParams]="[100, false]">
+[eutrepeOnEndScrollingParams]="[100, false]"
+[eutrepeOnBreakScrolling]="onBreak">
   <h1>
     Welcome to {{ title }}!
   </h1>

@@ -1,4 +1,4 @@
-## ngxEutrepeScrollTo - v4.1.1 (24/07/2019)
+## ngxEutrepeScrollTo - v4.1.0 (24/07/2019)
 
 ### New Features:
 
@@ -8,6 +8,8 @@
 
 * Rename WINDOW TOKEN name. WINDOW -> WINDOW_SCROLL_TO
 
+
+
 ## ngxEutrepeScrollTo - v4.0.3 (23/07/2019)
 
 ### Improvment
@@ -15,11 +17,14 @@
 * Improvment documentation
 
 
+
 ## ngxEutrepeScrollTo - v4.0.2 (08/07/2019)
 
 ### Fixed
 
 * just upgrade version for npm package
+
+
 
 ## ngxEutrepeScrollTo - v4.0.1 (11/07/2019)
 
@@ -31,6 +36,8 @@
 ### Fixed:
 
 * Cleaning code
+
+
 
 ## ngxEutrepeScrollTo - v4.0.0 (08/07/2019)
 

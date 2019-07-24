@@ -16,6 +16,8 @@ export class NgxEutrepeScrollToDirective {
   @Input() eutrepeOnStartScrollingParams: Array<any> = null;
   @Input() eutrepeOnEndScrolling: Function = null;
   @Input() eutrepeOnEndScrollingParams: Array<any> = null;
+  @Input() eutrepeOnBreakScrolling: Function = null;
+  @Input() eutrepeOnBreakScrollingParams: Array<any> = null;
 
 
   constructor(
@@ -45,7 +47,9 @@ export class NgxEutrepeScrollToDirective {
           onStart: this.eutrepeOnStartScrolling,
           onEnd: this.eutrepeOnEndScrolling,
           onStartParams: this.eutrepeOnStartScrollingParams,
-          onEndParams: this.eutrepeOnEndScrollingParams
+          onEndParams: this.eutrepeOnEndScrollingParams,
+          onBreak: this.eutrepeOnBreakScrolling,
+          onBreakParams: this.eutrepeOnBreakScrollingParams
         }
       );
   }

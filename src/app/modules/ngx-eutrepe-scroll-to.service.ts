@@ -6,13 +6,15 @@ import { DOCUMENT } from '@angular/common';
 
 
 export interface IScrollToConfig  {
-  duration?: number,
-  offset?: number,
-  easing?: string,
-  onEnd?: Function,
-  onStart?: Function,
-  onStartParams?: Array<any>
-  onEndParams?: Array<any>
+  duration?: number;
+  offset?: number;
+  easing?: string;
+  onEnd?: Function;
+  onStart?: Function;
+  onStartParams?: Array<any>;
+  onEndParams?: Array<any>;
+  onBreak?: Function;
+  onBreakParams?: Array<any>;
 }
 
 /** @dynamic */
@@ -26,7 +28,9 @@ export class NgxEutrepeScrollToService {
     onEnd: null,
     onStart: null,
     onStartParams: [],
-    onEndParams: []
+    onEndParams: [],
+    onBreak: null,
+    onBreakParams: []
   }
 
   private settings: IScrollToConfig = null;
@@ -47,6 +51,11 @@ export class NgxEutrepeScrollToService {
     }
 
   private clearRaf = () => {
+
+    if (this.settings.onBreak && typeof(this.settings.onBreak) === 'function') {
+      this.settings.onBreak(...this.settings.onBreakParams);
+    }
+
     this.window.cancelAnimationFrame(this.raf);
     this.window.removeEventListener('resize', this.clearRaf, false);
     this.window.removeEventListener('mousewheel', this.clearRaf, false);
@@ -64,7 +73,10 @@ export class NgxEutrepeScrollToService {
       this.settings.onStart(...this.settings.onStartParams);
     }
 
-    this.clearRaf();
+    if (this.isMoved) {
+      this.clearRaf();
+    }
+
     this.window.addEventListener('resize', this.clearRaf, false);
     this.window.addEventListener('mousewheel', this.clearRaf, false);
     this.window.addEventListener('DOMMouseScroll', this.clearRaf, false);

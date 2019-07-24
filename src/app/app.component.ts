@@ -18,7 +18,8 @@ export class AppComponent implements AfterViewInit {
       duration: 3000,
       offset: 100,
       onStart: this.onStart,
-      onEnd: this.onEnd
+      onEnd: this.onEnd,
+      onBreak: this.onBreak
     });
   }
 
@@ -30,5 +31,9 @@ export class AppComponent implements AfterViewInit {
   onEnd(v) {
     console.log(v)
     console.log('finish scrolling');
+  }
+
+  onBreak(name) {
+    console.log(name);  // Eutrepe
   }
 }
