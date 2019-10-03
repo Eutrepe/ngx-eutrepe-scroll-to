@@ -5,7 +5,7 @@ import { WINDOW_SCROLL_TO } from './windowToken/window-token';
 import { DOCUMENT } from '@angular/common';
 
 
-export interface IScrollToConfig  {
+export interface IScrollToConfig {
   duration?: number;
   offset?: number;
   easing?: string;
@@ -44,16 +44,16 @@ export class NgxEutrepeScrollToService {
   private isMoved: boolean = false;
 
   constructor(
-      @Inject(WINDOW_SCROLL_TO) private window: Window,
-      @Inject(DOCUMENT) private document: Document
-    ) {
-      if (!this.window) {
-        this.window = this.document.defaultView;
-      }
+    @Inject(WINDOW_SCROLL_TO) private window: Window,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    if (!this.window) {
+      this.window = this.document.defaultView;
     }
+  }
 
   private clearRaf = () => {
-    if (this.settings.onBreak && typeof(this.settings.onBreak) === 'function') {
+    if (this.settings.onBreak && typeof (this.settings.onBreak) === 'function') {
       const arg = this.settings.onBreakParams ? this.settings.onBreakParams : [];
       this.settings.onBreak(...arg);
     }
@@ -66,12 +66,12 @@ export class NgxEutrepeScrollToService {
   }
 
   public scrollTo = (
-      target: HTMLElement | number,
-      config?: IScrollToConfig) : void => {
+    target: HTMLElement | number,
+    config?: IScrollToConfig): void => {
 
-    this.settings = {...this.defaultConfig, ...config};
+    this.settings = { ...this.defaultConfig, ...config };
 
-    if (this.settings.onStart && typeof(this.settings.onStart) === 'function') {
+    if (this.settings.onStart && typeof (this.settings.onStart) === 'function') {
       const arg = this.settings.onStartParams ? this.settings.onStartParams : [];
       this.settings.onStart(...arg);
     }
@@ -88,16 +88,16 @@ export class NgxEutrepeScrollToService {
     this.startTime = this.window.performance.now();
 
     const documentHeight = Math.max(
-        this.document.body.scrollHeight,
-        this.document.body.offsetHeight,
-        this.document.documentElement.clientHeight,
-        this.document.documentElement.scrollHeight,
-        this.document.documentElement.offsetHeight);
+      this.document.body.scrollHeight,
+      this.document.body.offsetHeight,
+      this.document.documentElement.clientHeight,
+      this.document.documentElement.scrollHeight,
+      this.document.documentElement.offsetHeight);
 
     const windowHeight =
-        this.window.innerHeight ||
-        this.document.documentElement.clientHeight ||
-        this.document.getElementsByTagName('body')[0].clientHeight;
+      this.window.innerHeight ||
+      this.document.documentElement.clientHeight ||
+      this.document.getElementsByTagName('body')[0].clientHeight;
 
     const destinationOffset: number = (typeof target === 'number' ? target : target.offsetTop) + this.settings.offset;
     const destinationOffsetToScroll: number = Math.round(documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset);
@@ -106,28 +106,27 @@ export class NgxEutrepeScrollToService {
   }
 
 
-    private scroll = (duration: number, easing: string, destinationOffsetToScroll: number, onEnd: Function): void => {
-      const now: number = this.window.performance.now();
-      const time: number = Math.min(1, ((now - this.startTime) / this.settings.duration));
-      const timeFunction: number = this.easings[this.settings.easing](time);
+  private scroll = (duration: number, easing: string, destinationOffsetToScroll: number, onEnd: Function): void => {
+    const now: number = this.window.performance.now();
+    const time: number = Math.min(1, ((now - this.startTime) / this.settings.duration));
+    const timeFunction: number = this.easings[this.settings.easing](time);
 
-      this.window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - this.start)) + this.start));
-
-      if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1) {
-        if (this.isMoved && this.settings.onEnd && typeof(this.settings.onEnd) === 'function') {
-          const arg = this.settings.onEndParams ? this.settings.onEndParams : [];
-          this.settings.onEnd(...arg);
-        }
-        this.isMoved = false;
-        return;
+    this.window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - this.start)) + this.start));
+    if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1 || this.window.pageYOffset <= 0) {
+      if (this.isMoved && this.settings.onEnd && typeof (this.settings.onEnd) === 'function') {
+        const arg = this.settings.onEndParams ? this.settings.onEndParams : [];
+        this.settings.onEnd(...arg);
       }
+      this.isMoved = false;
+      return;
+    }
 
-      this.isMoved = true;
+    this.isMoved = true;
 
-      this.raf = this.window.requestAnimationFrame(
-        () => {
-          this.scroll(duration, easing, destinationOffsetToScroll, onEnd);
-        }
-      );
-    };
+    this.raf = this.window.requestAnimationFrame(
+      () => {
+        this.scroll(duration, easing, destinationOffsetToScroll, onEnd);
+      }
+    );
+  };
 }

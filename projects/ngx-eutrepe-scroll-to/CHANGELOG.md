@@ -1,3 +1,10 @@
+## ngxEutrepeScrollTo - v8.1.1 (03/10/2019)
+
+### Fixed
+
+* Fix for negative offset (window offset top smaller than 0)
+
+
 ## ngxEutrepeScrollTo - v8.1.0 (24/07/2019)
 
 ### New Features:
