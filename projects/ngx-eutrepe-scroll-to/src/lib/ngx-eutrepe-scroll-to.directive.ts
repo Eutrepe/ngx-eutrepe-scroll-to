@@ -5,10 +5,10 @@ import { NgxEutrepeScrollToService } from './ngx-eutrepe-scroll-to.service';
 
 /** @dynamic */
 @Directive({
-  selector: '[ngxEutrepScrollTo]'
+  selector: '[ngxEutrepeScrollTo]'
 })
 export class NgxEutrepeScrollToDirective {
-  @Input('ngxEutrepScrollTo') eutrepeScrollToTarget: string | number = 100;
+  @Input('ngxEutrepeScrollTo') eutrepeScrollToTarget: string | number = 100;
   @Input() eutrepeScrollToEasing: string = 'easeInOutQuad';
   @Input() eutrepeScrollToDuration: number = 1000;
   @Input() eutrepeScrollToOffset: number   = 0;
