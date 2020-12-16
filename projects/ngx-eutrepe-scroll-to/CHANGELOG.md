@@ -1,3 +1,9 @@
+## ngxEutrepeScrollTo - v10.0.0 (16/12/2020)
+
+### New Features:
+
+* Update to NG10
+
 ## ngxEutrepeScrollTo - v8.1.1 (03/10/2019)
 
 ### Fixed

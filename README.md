@@ -7,7 +7,7 @@
 
 ## Installation
 
-`npm i --save @eutrepe/scroll-to@8`
+`npm i --save @eutrepe/scroll-to`
 
 
 # Usage
@@ -42,19 +42,19 @@ export class AppModule { }
 
  <br /><br />
 
-### 2) Use the directive `(ngxEutrepScrollTo)`
+### 2) Use the directive `(ngxEutrepeScrollTo)`
 
 #### Basic
 
 ```html
-<button [ngxEutrepScrollTo]="'#target'">Scroll To</button>
+<button [ngxEutrepeScrollTo]="'#target'">Scroll To</button>
 
 <div id="target"></div>
 ```
   or
 
 ```html
-<button [ngxEutrepScrollTo]="1000">Scroll To</button>
+<button [ngxEutrepeScrollTo]="1000">Scroll To</button>
 ```
 
 
@@ -62,7 +62,7 @@ export class AppModule { }
 
 ```html
 <button
-    [ngxEutrepScrollTo]="'#target'"
+    [ngxEutrepeScrollTo]="'#target'"
     [eutrepeScrollToEasing]="'linear'"
     [eutrepeScrollToDuration]="3000"
     [eutrepeScrollToOffset]="100"
@@ -162,16 +162,16 @@ export class AppModule { }
 
 | Input                            | Type              | Required                           | Description                                                               |
 | -------------------------------- | ----------------- | ---------------------------------- | ------------------------------------------------------------------------- |
-| [ngxEutrepScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                           |
+| [ngxEutrepeScrollTo]              | string or number  | **YES**                            | Target selector name or number pixels to scroll                           |
 | [eutrepeScrollToEasing]          | string            | Optional, default: 'easeInOutQuad' | Easing type (more info in EASING section)                                 |
 | [eutrepeScrollToDuration]        | number            | Optional, default: 1000            | Easing time in milliseconds                                               |
 | [eutrepeScrollToOffset]          | number            | Optional, default: 0               | Offset in px to target element                                            |
 | [eutrepeOnStartScrolling]        | Function          | Optional, default: null            | The function is started immediately after the start of scrolling          |
 | [eutrepeOnEndScrolling]          | Function          | Optional, default: null            | The function is started immediately after the end of scrolling            |
-| [eutrepeOnStartScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
-| [eutrepeOnEndScrollingParams]    | Array | undefined | Optional, default: []              | Array of custom argumments for onStart callback                           |
-| [eutrepeOnBreakScrolling]        | Function          | Optional, default: null            | The function is when user break scrolling (secound click, resize, scroll) |
-| [eutrepeOnBreakScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom argumments for onBreak callback                           |
+| [eutrepeOnStartScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom arguments for onStart callback                           |
+| [eutrepeOnEndScrollingParams]    | Array | undefined | Optional, default: []              | Array of custom arguments for onStart callback                           |
+| [eutrepeOnBreakScrolling]        | Function          | Optional, default: null            | The function is when user break scrolling (second click, resize, scroll) |
+| [eutrepeOnBreakScrollingParams]  | Array | undefined | Optional, default: []              | Array of custom arguments for onBreak callback                           |
 
 <br />
 
