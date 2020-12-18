@@ -1,3 +1,9 @@
+## ngxEutrepeScrollTo - v10.0.2 (18/12/2020)
+
+### Fixed
+
+* Fix FF bug if page offset = 0
+
 ## ngxEutrepeScrollTo - v10.0.0 (16/12/2020)
 
 ### New Features:

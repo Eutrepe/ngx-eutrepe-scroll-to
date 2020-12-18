@@ -42,6 +42,7 @@ export class NgxEutrepeScrollToService {
   private start: number;
   private startTime: number;
   private isMoved: boolean = false;
+  private isFinished: boolean = false;
 
   constructor(
     @Inject(WINDOW_SCROLL_TO) private window: Window,
@@ -53,7 +54,7 @@ export class NgxEutrepeScrollToService {
   }
 
   private clearRaf = () => {
-    if (this.settings.onBreak && typeof (this.settings.onBreak) === 'function') {
+    if (!this.isFinished && this.settings.onBreak && typeof (this.settings.onBreak) === 'function') {
       const arg = this.settings.onBreakParams ? this.settings.onBreakParams : [];
       this.settings.onBreak(...arg);
     }
@@ -110,18 +111,22 @@ export class NgxEutrepeScrollToService {
     const now: number = this.window.performance.now();
     const time: number = Math.min(1, ((now - this.startTime) / this.settings.duration));
     const timeFunction: number = this.easings[this.settings.easing](time);
+    this.isMoved = true;
 
     this.window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - this.start)) + this.start));
-    if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1 || this.window.pageYOffset <= 0) {
+
+    if (this.window.pageYOffset === destinationOffsetToScroll || Math.abs(this.window.pageYOffset - destinationOffsetToScroll) <= 1 || (this.window.pageYOffset <= 0 && destinationOffsetToScroll < 0)) {
+      this.isFinished = true;
       if (this.isMoved && this.settings.onEnd && typeof (this.settings.onEnd) === 'function') {
         const arg = this.settings.onEndParams ? this.settings.onEndParams : [];
         this.settings.onEnd(...arg);
       }
       this.isMoved = false;
+      this.clearRaf();
       return;
     }
 
-    this.isMoved = true;
+
 
     this.raf = this.window.requestAnimationFrame(
       () => {

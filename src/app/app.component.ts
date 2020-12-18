@@ -25,7 +25,10 @@ export class AppComponent implements AfterViewInit {
     }
 
   ngAfterViewInit() {
-    this.ngxEutrepeScrollToService.scrollTo(this.test.nativeElement, this.config);
+
+    setTimeout(() => {
+      this.ngxEutrepeScrollToService.scrollTo(this.test.nativeElement, this.config);
+    }, 2000);
   }
 
 
@@ -43,6 +46,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   onBreak(arg1) {
-    console.log(arg1);  // Eutrepe
+    console.log('break', arg1);  // Eutrepe
   }
 }
