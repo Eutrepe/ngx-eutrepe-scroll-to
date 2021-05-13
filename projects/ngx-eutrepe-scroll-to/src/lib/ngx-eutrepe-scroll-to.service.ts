@@ -70,6 +70,7 @@ export class NgxEutrepeScrollToService {
     target: HTMLElement | number,
     config?: IScrollToConfig): void => {
 
+    this.isFinished = false;
     this.settings = { ...this.defaultConfig, ...config };
 
     if (this.settings.onStart && typeof (this.settings.onStart) === 'function') {

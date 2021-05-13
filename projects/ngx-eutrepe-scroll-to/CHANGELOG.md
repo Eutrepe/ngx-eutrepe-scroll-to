@@ -1,3 +1,9 @@
+## ngxEutrepeScrollTo - v10.0.3 (13/05/2021)
+
+### Fixed
+
+* Reset property isFinished to init value in service before every `scrollTo` invoke
+
 ## ngxEutrepeScrollTo - v10.0.2 (18/12/2020)
 
 ### Fixed
