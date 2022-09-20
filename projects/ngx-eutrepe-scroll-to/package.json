@@ -1,6 +1,6 @@
 {
   "name": "@eutrepe/scroll-to",
-  "version": "10.0.3",
+  "version": "14.0.0",
   "description": "Directive and Service for Angular to scroll to section",
   "author": "Maciej Bobrowski",
   "repository": {

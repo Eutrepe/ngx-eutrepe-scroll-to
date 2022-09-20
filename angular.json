@@ -43,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -142,7 +141,7 @@
       "prefix": "NgxEutrepe",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ngx-eutrepe-scroll-to/tsconfig.lib.json",
             "project": "projects/ngx-eutrepe-scroll-to/ng-package.json"
